@@ -16,12 +16,10 @@
         app:fontFamily="sans-serif-condensed"
         android:background="@color/colorAccent"/>
 
-    <view class="android.support.v7.app.AlertController$RecycleListView"
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/prime_number_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none">
-
-    </view>
+        android:scrollbars="none" />
 
 </LinearLayout>
