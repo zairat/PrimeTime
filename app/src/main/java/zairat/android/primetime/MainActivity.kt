@@ -40,15 +40,6 @@ class MainActivity : AppCompatActivity() {
 
         //automatically scroll through items
         autoScroll( 1500)
-
-        prime_number_recycler.setOnItemClickListener{
-            parent: AdapterView<*>, view: View?, position: Int, id: Long ->
-            //change activity
-            val intent = Intent(applicationContext, DiffList::class.java)
-            intent.putExtra("diff_url", pullList[position].diff_url)
-            startActivity(intent)
-
-        }
     }
 
     //block all swiping
