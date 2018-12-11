@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                 .map { it + 1 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    prime_number_recycler.smoothScrollToPosition(it.toInt() + 1)
+                    prime_number_recycler.smoothScrollToPosition(it.toInt())
                 }
     }
 
