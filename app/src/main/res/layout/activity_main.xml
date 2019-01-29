@@ -21,6 +21,8 @@
         android:id="@+id/prime_number_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none" />
+        android:scrollbars="none"
+        android:clickable="true"
+        android:focusable="true"/>
 
 </LinearLayout>

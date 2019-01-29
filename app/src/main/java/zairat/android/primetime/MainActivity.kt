@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        prime_number_recycler.adapter = PrimeAdapter(numbers)
+        prime_number_recycler.adapter = PrimeAdapter(numbers, isPrime)
 
         //automatically scroll through items
         autoScroll( 1500)
@@ -44,13 +44,16 @@ class MainActivity : AppCompatActivity() {
 
     //block all swiping
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        when (ev?.action) {
-            // true: consume touch event
-            // false: dispatch touch event
-            MotionEvent.ACTION_UP -> return false
-            MotionEvent.ACTION_DOWN -> return false
+        when (ev?.action){
+            MotionEvent.ACTION_MOVE -> return true
         }
-        return true
+        if (ev?.action == MotionEvent.ACTION_DOWN) {
+            onUserInteraction()
+        }
+        if (window.superDispatchTouchEvent(ev)) {
+            return true
+        }
+        return false
     }
 
 
