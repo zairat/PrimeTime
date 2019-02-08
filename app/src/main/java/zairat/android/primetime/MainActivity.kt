@@ -10,6 +10,7 @@ import android.util.Log
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,11 +23,12 @@ class MainActivity : AppCompatActivity() {
 
         prime_number_recycler.layoutManager = LinearLayoutManager(this)
 
-        val max = 25
-        val numbers = Array(max-1){i -> i+2}
+        val max = 10
+        val numberOfNumbers = 50
+        val numbers = Array(numberOfNumbers){Random.nextInt(2, max+1)}
         val isPrime  = BooleanArray(max-1) {true}
 
-        for (i in numbers.indices){
+        for (i in isPrime.indices){
             if (isPrime[i]){
                 var temp = (i+2)*(i+2)
                 while (temp <= max){
