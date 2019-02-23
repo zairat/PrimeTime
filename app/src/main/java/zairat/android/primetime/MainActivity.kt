@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         prime_number_recycler.layoutManager = LinearLayoutManager(this)
 
-        val max = 10
+        val i = intent
+        val max = i.getIntExtra("maxNumber", 100)
         val numberOfNumbers = 50
         val numbers = Array(numberOfNumbers){Random.nextInt(2, max+1)}
         val isPrime  = BooleanArray(max-1) {true}
