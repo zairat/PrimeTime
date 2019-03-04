@@ -43,10 +43,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        prime_number_recycler.adapter = PrimeAdapter(numbers, isPrime, onNumberSelected = {
-            if (it){
+        prime_number_recycler.adapter = PrimeAdapter(numbers, onNumberSelected = {
+            //if correct
+            if(isPrime[it-2]){
+                Log.i("event listener", "this is a prime number" )
                 points++
                 points_text.text = points.toString()
+            }
+            //if not correct
+            else{
+                Log.i("event listener", "wrong! dumb dumb" )
             }
         })
 

@@ -9,8 +9,7 @@ import kotlinx.android.synthetic.main.num_card.view.*
 
 class PrimeAdapter(
         private val nums: Array<Int>,
-        private val isPrime: BooleanArray,
-        private val onNumberSelected: (correct: Boolean) -> Unit
+        private val onNumberSelected: (selected_number: Int) -> Unit
 )
     : RecyclerView.Adapter<CustomViewHolder>() {
 
@@ -31,17 +30,7 @@ class PrimeAdapter(
 
         holder.view.number_text.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View) {
-                val selectedNumber = nums[holder.adapterPosition]
-                //if correct
-                if(isPrime[selectedNumber-2]){
-                    Log.i("event listener", "this is a prime number" )
-                    onNumberSelected(true)
-                }
-                //if not correct
-                else{
-                    Log.i("event listener", "wrong! dumb dumb" )
-                    onNumberSelected(false)
-                }
+                onNumberSelected(nums[holder.adapterPosition])
             }
         })
 
