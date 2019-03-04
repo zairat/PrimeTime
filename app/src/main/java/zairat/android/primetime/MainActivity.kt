@@ -28,6 +28,10 @@ class MainActivity : AppCompatActivity() {
         val numberOfNumbers = 50
         val numbers = Array(numberOfNumbers){Random.nextInt(2, max+1)}
         val isPrime  = BooleanArray(max-1) {true}
+        var points = 0
+
+        //initialize points
+        points_text.text = points.toString()
 
         for (i in isPrime.indices){
             if (isPrime[i]){
@@ -39,7 +43,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        prime_number_recycler.adapter = PrimeAdapter(numbers, isPrime)
+        prime_number_recycler.adapter = PrimeAdapter(numbers, isPrime, onNumberSelected = {
+            if (it){
+                points++
+                points_text.text = points.toString()
+            }
+        })
 
         //automatically scroll through items
         autoScroll( 1500)

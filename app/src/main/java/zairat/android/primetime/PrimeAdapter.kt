@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.num_card.view.*
 
-class PrimeAdapter(private val nums: Array<Int>, private val isPrime: BooleanArray)
+class PrimeAdapter(
+        private val nums: Array<Int>,
+        private val isPrime: BooleanArray,
+        private val onNumberSelected: (correct: Boolean) -> Unit
+)
     : RecyclerView.Adapter<CustomViewHolder>() {
 
     //returns number of items in list
@@ -31,10 +35,12 @@ class PrimeAdapter(private val nums: Array<Int>, private val isPrime: BooleanArr
                 //if correct
                 if(isPrime[selectedNumber-2]){
                     Log.i("event listener", "this is a prime number" )
+                    onNumberSelected(true)
                 }
                 //if not correct
                 else{
                     Log.i("event listener", "wrong! dumb dumb" )
+                    onNumberSelected(false)
                 }
             }
         })
