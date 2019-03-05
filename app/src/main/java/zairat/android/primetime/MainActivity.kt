@@ -29,6 +29,11 @@ class MainActivity : AppCompatActivity() {
         val numbers = Array(numberOfNumbers){Random.nextInt(2, max+1)}
         val isPrime  = BooleanArray(max-1) {true}
 
+        //initialize points
+        var points = 0
+        points_text.text = points.toString()
+
+        //use sieve to create isPrime, an array which stores which numbers are prime and which aren't
         for (i in isPrime.indices){
             if (isPrime[i]){
                 var temp = (i+2)*(i+2)
@@ -39,7 +44,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        prime_number_recycler.adapter = PrimeAdapter(numbers, isPrime)
+        //handle onTouch events in the recyclerview through the adapter
+        prime_number_recycler.adapter = PrimeAdapter(numbers, onNumberSelected = {
+            //if correct
+            if(isPrime[it-2]){
+                points++
+                points_text.text = points.toString()
+            }
+            //if not correct
+            else{
+                Log.i("event listener", "wrong! dumb dumb" )
+            }
+        })
 
         //automatically scroll through items
         autoScroll( 1500)
@@ -59,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         return false
     }
 
-
+    //scrolls through items in a recyclerview. moves on to next item at every interval
     private fun autoScroll( intervalInMillis: Long) {
         dispose?.let {
             if(!it.isDisposed) return
