@@ -38,10 +38,4 @@ class PrimeAdapter(
     }
 }
 
-class CustomViewHolder(val view: View) : RecyclerView.ViewHolder(view){
-//    init {
-//        view.setOnClickListener() {
-//            Log.i("event listener", "you clicked!!!")
-//        }
-//    }
-}
+class CustomViewHolder(val view: View) : RecyclerView.ViewHolder(view)

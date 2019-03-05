@@ -13,6 +13,7 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
+        //activate start button only when the text input is not empty
         max_number.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
@@ -27,6 +28,7 @@ class StartActivity : AppCompatActivity() {
             }
         })
 
+        //send max_number to main activity
         start_button.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("maxNumber",Integer.parseInt(max_number.text.toString()))
