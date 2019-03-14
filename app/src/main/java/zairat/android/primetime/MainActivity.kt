@@ -1,7 +1,9 @@
 package zairat.android.primetime
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import android.view.MotionEvent
@@ -54,6 +56,9 @@ class MainActivity : AppCompatActivity() {
             //if not correct
             else{
                 Log.i("event listener", "wrong! dumb dumb" )
+                stopAutoScroll()
+                endGameDialog(false, "Sorry, $it is not a prime number")
+
             }
         })
 
@@ -88,8 +93,23 @@ class MainActivity : AppCompatActivity() {
                 }
     }
 
-//    private fun stopAutoScroll() {
-//        dispose?.let(Disposable::dispose)
-//    }
+    private fun stopAutoScroll() {
+        dispose?.let(Disposable::dispose)
+    }
+
+
+    private fun endGameDialog(win: Boolean, message: String){
+        val dialog = AlertDialog.Builder(this)
+        dialog.setTitle("Game Over")
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("Play Again"){ _, _->
+                    //return to start page
+                    val intent = Intent(this, StartActivity::class.java)
+                    startActivity(intent)
+                }
+        val alert = dialog.create()
+        alert.show()
+    }
 
 }
